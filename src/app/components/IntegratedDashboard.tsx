@@ -125,9 +125,9 @@ export function IntegratedDashboard() {
           style={{ marginLeft: 196, flex: 1, height: '100vh' }}
         >
           <div key={activeFlow} className="animate-fade-in">
-            {activeFlow === 'F1' && <FrameWrapper height={1756}><Frame /></FrameWrapper>}
-            {activeFlow === 'F2' && <FrameWrapper height={2640}><Frame2 /></FrameWrapper>}
-            {activeFlow === 'F3' && <FrameWrapper height={2968}><Frame3 /></FrameWrapper>}
+            {activeFlow === 'F1' && <FrameWrapper><Frame /></FrameWrapper>}
+            {activeFlow === 'F2' && <FrameWrapper><Frame2 /></FrameWrapper>}
+            {activeFlow === 'F3' && <FrameWrapper><Frame3 /></FrameWrapper>}
           </div>
         </div>
 
@@ -140,11 +140,15 @@ export function IntegratedDashboard() {
 
 // ─── Frame content wrapper ─────────────────────────────────────────────────
 
-function FrameWrapper({ children, height }: { children: React.ReactNode; height: number }) {
-  // Shift left 196px to hide the embedded sidebar of each Figma frame.
-  // Explicit height so the frame's size-full resolves to the correct pixel height.
+function FrameWrapper({ children }: { children: React.ReactNode }) {
   return (
-    <div style={{ marginLeft: -196, width: 'calc(100% + 196px)', height }}>
+    <div
+      style={{
+        marginLeft: -196,
+        width: 'calc(100% + 196px)',
+        minHeight: '100vh',
+      }}
+    >
       {children}
     </div>
   );
